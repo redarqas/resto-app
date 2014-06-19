@@ -1,6 +1,9 @@
 package nvpost.resto.representations;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Restaurant implements Comparable<Restaurant>{
+    @NotBlank
     private String name;
 
     public Restaurant(String name) {

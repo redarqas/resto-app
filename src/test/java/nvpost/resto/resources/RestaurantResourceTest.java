@@ -18,7 +18,6 @@ import nvpost.resto.representations.Restaurant;
 
 import org.junit.Before;
 import org.junit.ClassRule;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -30,7 +29,7 @@ public class RestaurantResourceTest {
     private static final RestaurantDAO dao = mock(RestaurantDAO.class);
     private  Restaurant uniqueResto;
     private  List<Restaurant> restaurants = new ArrayList<Restaurant>();
-
+    
     @ClassRule
     public static final ResourceTestRule resources = ResourceTestRule.builder().addResource(new RestaurantResource(dao)).build();
 
@@ -48,7 +47,6 @@ public class RestaurantResourceTest {
     }
 
     @Test
-    @Ignore
     public void listRestaurants() {
         // Call restaurants list
         final List<Restaurant> results = resources.client().resource("/restaurants")
@@ -64,7 +62,6 @@ public class RestaurantResourceTest {
     }
 
     @Test
-    @Ignore
     public void randomRestaurant() {
         final Restaurant result = resources.client().resource("/restaurants/random").get(Restaurant.class);
         // The result should be one of restaurants
@@ -74,7 +71,6 @@ public class RestaurantResourceTest {
     }
     
     @Test
-    @Ignore
     public void deleteRestaurant() {
         resources.client().resource("/restaurants/Resto0").delete();
         // getRestaurantByName/deleteRestaurant should be called once
@@ -83,7 +79,6 @@ public class RestaurantResourceTest {
     }
 
     @Test
-    @Ignore
     public void createRestaurant() { 
         final String exceptedResto = "createdResto";
         final Restaurant result = resources.client().resource("/restaurants")
