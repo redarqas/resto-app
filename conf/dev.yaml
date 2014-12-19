@@ -2,8 +2,8 @@ server:
   applicationConnectors:
     - type: https
       port: 8443
-      keyStorePath: /Users/redarqas/projects/activator-play-tls-example/certs/client.jks
-      keyStorePassword: uKh59eDEZM
+      keyStorePath: /Users/redarqas/projects/resto-app/certs/example.com.jks
+      keyStorePassword: 4EVn4tb0wA
       validateCerts: false
   adminConnectors:
     - type: http
