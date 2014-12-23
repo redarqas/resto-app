@@ -1,9 +1,11 @@
-export PW=`cat password`
+export PW=`cat ../password`
+
+# On a besoin du certificat du CA server
 
 # Create a server certificate, tied to example.com
 keytool -genkeypair -v \
   -alias example.com \
-  -dname "CN=example.com, OU=Novapost Org, O=Novapost Company, L=Paris, ST=idf, C=FR" \
+  -dname "CN=example.com, OU=Example Org, O=Example Company, L=San Francisco, ST=California, C=US" \
   -keystore example.com.jks \
   -keypass:env PW \
   -storepass:env PW \
@@ -23,10 +25,10 @@ keytool -certreq -v \
 # original certificate.
 # Technically, keyUsage should be digitalSignature for DHE or ECDHE, keyEncipherment for RSA.
 keytool -gencert -v \
-  -alias novapostca \
+  -alias exampleca \
   -keypass:env PW \
   -storepass:env PW \
-  -keystore novapostca.jks \
+  -keystore exampleca.jks \
   -infile example.com.csr \
   -outfile example.com.crt \
   -ext KeyUsage:critical="digitalSignature,keyEncipherment" \
@@ -34,10 +36,11 @@ keytool -gencert -v \
   -ext SAN="DNS:example.com" \
   -rfc
 
-# Tell example.com.jks it can trust novapostca as a signer.
+# Tell example.com.jks it can trust exampleca as a signer.
+
 keytool -import -v \
-  -alias novapostca \
-  -file novapostca.crt \
+  -alias exampleca \
+  -file exampleca.crt \
   -keystore example.com.jks \
   -storetype JKS \
   -storepass:env PW << EOF
@@ -57,4 +60,3 @@ keytool -import -v \
 keytool -list -v \
   -keystore example.com.jks \
   -storepass:env PW
-
