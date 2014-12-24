@@ -44,5 +44,6 @@ public class App extends Application<AppConfig> {
         // Load resources routes
         log.info("Register Jersey");
         env.jersey().register(new RestaurantResource(restaurantDAO));
+        env.jersey().register(new nvpost.resto.resources.Application());
     }
 }
