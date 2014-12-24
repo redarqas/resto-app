@@ -1,6 +1,7 @@
 export PW=`cat ../password`
 
 # Create a self signed certificate & private key to create a root certificate authority.
+# [Stockage de client.jks]
 keytool -genkeypair -v \
   -alias clientca \
   -keystore client.jks \
@@ -14,6 +15,7 @@ keytool -genkeypair -v \
   -validity 9999
 
 # Create another key pair that will act as the client.
+# [Stockage de client.jks]
 keytool -genkeypair -v \
   -alias client \
   -keystore client.jks \
